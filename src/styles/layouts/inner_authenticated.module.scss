@@ -1,0 +1,19 @@
+.innerAuthenticatedContainer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.innerAuthenticatedBody {
+    display: flex;
+    flex: 1;
+    padding-top: 50px; // offset fixed header
+}
+
+.innerAuthenticatedContent {
+    flex: 1;
+    margin-left: 50px; // offset fixed sidebar
+    min-height: calc(100vh - 50px);
+    padding: 24px;
+    background: #f9fafb;
+}
