@@ -5,6 +5,7 @@ export default function OnboardingLayout({
 }: {
     children: React.ReactNode
 }) {
+    // Make sure we're authenticated
     return (
         <div className={styles.layout}>
             <nav className={styles.nav}>

@@ -1,0 +1,46 @@
+.header{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.innerHeader{
+    width: 1200px;
+    margin: 0% auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.branding{
+
+    a{
+
+        h3{
+            font-weight: bold;
+        }
+    }
+}
+
+.navigation{
+
+    .innerNav{
+        margin: 0px;
+        padding: 0px;
+
+        ul{
+            margin: 0px;
+            padding: 0px;
+
+            display: flex;
+            gap: 15px;
+
+            li{
+
+                a{
+                    font-size: .9rem;
+                }
+            }
+        }
+    }
+}
+

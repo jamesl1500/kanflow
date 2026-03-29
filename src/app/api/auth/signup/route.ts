@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
     email,
     password,
     options: {
+      emailRedirectTo: "/api/auth/verify-email",
       data: { first_name: firstName, last_name: lastName },
     },
   })
