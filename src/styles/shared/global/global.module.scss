@@ -1,0 +1,16 @@
+/**
+* Global SCSS file
+**/
+@use "../global/variables.module.scss" as *;
+
+// Center
+.center{
+    margin: 0% auto;
+}
+
+// Containers
+.container{
+    @extend .center;
+    max-width: 1200px;
+    
+}
