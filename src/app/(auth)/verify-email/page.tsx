@@ -13,7 +13,7 @@ import { redirect } from "next/navigation";
 
 export default async function VerifyEmailPage({ searchParams })
 {   
-    const params = await searchParams;
+    const { params } = await searchParams;
     const success = params.success;
 
     const supabase = createClient();

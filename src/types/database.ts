@@ -166,7 +166,13 @@ export type Database = {
           position: number
           assignee_id: string | null
           priority: 'high' | 'medium' | 'low'
+          status: 'todo' | 'in_progress' | 'blocked' | 'review' | 'done'
           due_date: string | null
+          estimate_points: number | null
+          tags: string[]
+          started_at: string | null
+          completed_at: string | null
+          archived_at: string | null
           created_at: string
           updated_at: string
         }
@@ -179,7 +185,13 @@ export type Database = {
           position?: number
           assignee_id?: string | null
           priority?: 'high' | 'medium' | 'low'
+          status?: 'todo' | 'in_progress' | 'blocked' | 'review' | 'done'
           due_date?: string | null
+          estimate_points?: number | null
+          tags?: string[]
+          started_at?: string | null
+          completed_at?: string | null
+          archived_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -192,7 +204,49 @@ export type Database = {
           position?: number
           assignee_id?: string | null
           priority?: 'high' | 'medium' | 'low'
+          status?: 'todo' | 'in_progress' | 'blocked' | 'review' | 'done'
           due_date?: string | null
+          estimate_points?: number | null
+          tags?: string[]
+          started_at?: string | null
+          completed_at?: string | null
+          archived_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      kanban_subtasks: {
+        Row: {
+          id: string
+          card_id: string
+          title: string
+          is_completed: boolean
+          position: number
+          due_date: string | null
+          completed_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          card_id: string
+          title: string
+          is_completed?: boolean
+          position?: number
+          due_date?: string | null
+          completed_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          card_id?: string
+          title?: string
+          is_completed?: boolean
+          position?: number
+          due_date?: string | null
+          completed_at?: string | null
           created_at?: string
           updated_at?: string
         }
