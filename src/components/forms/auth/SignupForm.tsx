@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,14 +10,15 @@ import { SignupFormData, SignupFormSchema } from "@/lib/schemas/auth/SignupForm"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-const SignupForm = () => {
+interface SignupFormProps {
+    invitedEmail?: string;
+}
+
+const SignupForm = ({ invitedEmail = "" }: SignupFormProps) => {
     const router = useRouter()
-    const searchParams = useSearchParams()
     const [serverError, setServerError] = useState<string | null>(null)
     const [confirmationMessage, setConfirmationMessage] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState(false)
-
-    const invitedEmail = searchParams.get("email")?.trim().toLowerCase() ?? ""
 
     const { register, handleSubmit, formState: { errors } } = useForm<SignupFormData>({
         resolver: zodResolver(SignupFormSchema),

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { UpdateTaskSchema } from "@/lib/schemas/tasks/TaskForm";
+import type { TablesUpdate } from "@/types/database";
 
 export async function POST(request: NextRequest) {
     const cookieStore = await cookies();
@@ -86,7 +87,7 @@ export async function POST(request: NextRequest) {
         }
     }
 
-    const normalized = {
+    const normalized: TablesUpdate<"kanban_cards"> = {
         ...updates,
         description: updates.description === undefined ? undefined : updates.description ?? null,
         due_date: updates.due_date === undefined ? undefined : updates.due_date ?? null,

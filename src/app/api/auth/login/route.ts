@@ -34,6 +34,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 401 })
   }
 
+  if (!data.user) {
+    return NextResponse.json({ error: "Unable to resolve authenticated user" }, { status: 500 })
+  }
+
   await acceptPendingInvitesForUser(supabase, {
     id: data.user.id,
     email: data.user.email,

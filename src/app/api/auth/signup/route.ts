@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Email confirmation required — user has no active session yet
-  if (!data.session) {
+  if (!data.session || !data.user) {
     return NextResponse.json({ requiresConfirmation: true })
   }
 
