@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
 import { z } from "zod"
 import { createClient } from "@/utils/supabase/server"
+import { acceptPendingInvitesForUser } from "@/lib/companies/acceptPendingInvites"
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -32,6 +33,15 @@ export async function POST(request: NextRequest) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 401 })
   }
+
+  if (!data.user) {
+    return NextResponse.json({ error: "Unable to resolve authenticated user" }, { status: 500 })
+  }
+
+  await acceptPendingInvitesForUser(supabase, {
+    id: data.user.id,
+    email: data.user.email,
+  })
 
   // Determine where to send the user based on onboarding progress
   const { data: profile } = await supabase

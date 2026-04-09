@@ -10,7 +10,11 @@ import { SignupFormData, SignupFormSchema } from "@/lib/schemas/auth/SignupForm"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-const SignupForm = () => {
+interface SignupFormProps {
+    invitedEmail?: string;
+}
+
+const SignupForm = ({ invitedEmail = "" }: SignupFormProps) => {
     const router = useRouter()
     const [serverError, setServerError] = useState<string | null>(null)
     const [confirmationMessage, setConfirmationMessage] = useState<string | null>(null)
@@ -92,6 +96,7 @@ const SignupForm = () => {
                     placeholder="you@example.com"
                     autoComplete="email"
                     required
+                    defaultValue={invitedEmail}
                     {...register("email")}
                 />
                 {errors.email && <p className={styles.error}>{errors.email.message}</p>}

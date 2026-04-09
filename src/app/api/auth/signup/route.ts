@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
 import { z } from "zod"
 import { createClient } from "@/utils/supabase/server"
+import { acceptPendingInvitesForUser } from "@/lib/companies/acceptPendingInvites"
 
 const SignupSchema = z.object({
   firstName: z.string().min(2),
@@ -40,9 +41,14 @@ export async function POST(request: NextRequest) {
   }
 
   // Email confirmation required — user has no active session yet
-  if (!data.session) {
+  if (!data.session || !data.user) {
     return NextResponse.json({ requiresConfirmation: true })
   }
+
+  await acceptPendingInvitesForUser(supabase, {
+    id: data.user.id,
+    email: data.user.email,
+  })
 
   return NextResponse.json({ redirect: "/onboarding/username" })
 }

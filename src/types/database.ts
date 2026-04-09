@@ -69,6 +69,51 @@ export type Database = {
         }
         Relationships: []
       }
+      company_invites: {
+        Row: {
+          id: string
+          company_id: string
+          invited_email: string
+          invited_by_user_id: string
+          role: 'admin' | 'member'
+          status: 'pending' | 'accepted' | 'revoked' | 'expired'
+          invite_token: string
+          accepted_by_user_id: string | null
+          accepted_at: string | null
+          expires_at: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          company_id: string
+          invited_email: string
+          invited_by_user_id: string
+          role?: 'admin' | 'member'
+          status?: 'pending' | 'accepted' | 'revoked' | 'expired'
+          invite_token?: string
+          accepted_by_user_id?: string | null
+          accepted_at?: string | null
+          expires_at?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          company_id?: string
+          invited_email?: string
+          invited_by_user_id?: string
+          role?: 'admin' | 'member'
+          status?: 'pending' | 'accepted' | 'revoked' | 'expired'
+          invite_token?: string
+          accepted_by_user_id?: string | null
+          accepted_at?: string | null
+          expires_at?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       workspaces: {
         Row: {
           id: string

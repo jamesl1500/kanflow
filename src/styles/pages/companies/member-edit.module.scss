@@ -1,0 +1,213 @@
+.container {
+    padding: 28px 36px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.pageHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.pageTitle {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.pageDesc {
+    margin: 4px 0 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.backLink {
+    border: 1px solid #d0d5dd;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #344054;
+    text-decoration: none;
+
+    &:hover {
+        background: #f9fafb;
+    }
+}
+
+.page {
+    display: grid;
+    gap: 14px;
+}
+
+.section {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.sectionHeader {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.sectionTitle {
+    margin: 0;
+    color: #111827;
+    font-size: 0.96rem;
+}
+
+.sectionDesc {
+    margin: 4px 0 0;
+    font-size: 0.79rem;
+    color: #6b7280;
+}
+
+.sectionBody {
+    padding: 14px 16px 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+        font-size: 0.78rem;
+        color: #475467;
+        font-weight: 600;
+    }
+}
+
+.select {
+    width: 100%;
+    border: 1px solid #d0d5dd;
+    border-radius: 10px;
+    padding: 9px 10px;
+    font-size: 0.84rem;
+    outline: none;
+
+    &:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+    }
+}
+
+.hint {
+    margin: 0;
+    font-size: 0.74rem;
+    color: #6b7280;
+}
+
+.serverError,
+.fieldError {
+    margin: 0;
+    color: #b42318;
+    font-size: 0.76rem;
+}
+
+.saveSuccess {
+    margin: 0;
+    color: #027a48;
+    font-size: 0.76rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.cancelBtn,
+.saveBtn,
+.deleteBtn {
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.cancelBtn {
+    background: #ffffff;
+    border-color: #d0d5dd;
+    color: #344054;
+
+    &:hover {
+        background: #f9fafb;
+    }
+}
+
+.saveBtn {
+    background: #4f46e5;
+    color: #ffffff;
+
+    &:hover {
+        background: #4338ca;
+    }
+}
+
+.dangerSection {
+    border-color: #fecdca;
+}
+
+.dangerTitle {
+    color: #b42318;
+}
+
+.dangerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.dangerLabel {
+    margin: 0;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #b42318;
+}
+
+.dangerHint {
+    margin: 4px 0 0;
+    font-size: 0.76rem;
+    color: #912018;
+    max-width: 460px;
+}
+
+.deleteBtn {
+    background: #b42318;
+    color: #ffffff;
+
+    &:hover {
+        background: #912018;
+    }
+}
+
+@media (max-width: 760px) {
+    .container {
+        padding: 20px 14px;
+    }
+
+    .pageHeader {
+        flex-direction: column;
+    }
+
+    .dangerRow,
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

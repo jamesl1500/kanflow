@@ -8,20 +8,25 @@
 import Link from "next/link"
 import styles from "@/styles/pages/auth/verify-email.module.scss"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { createClient } from "@/utils/supabase/client";
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-export default async function VerifyEmailPage({ searchParams })
-{   
-    const { params } = await searchParams;
-    const success = params.success;
+interface Props {
+    searchParams: Promise<{ success?: string }>;
+}
 
-    const supabase = createClient();
+export default async function VerifyEmailPage({ searchParams }: Props)
+{
+    const { success } = await searchParams;
+
+    const cookieStore = await cookies();
+    const supabase = createClient(cookieStore);
 
     // Check if logged in
-    const {data, error} = await supabase.auth.getSession();
+    const { data } = await supabase.auth.getSession();
 
-    if(!data)
+    if (!data.session)
     {
         // Means we're not logged
         redirect("/login");
@@ -35,13 +40,13 @@ export default async function VerifyEmailPage({ searchParams })
                     <CardDescription>Let's get you verified</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    {success == "true" ? (
+                    {success === "true" ? (
                         <>
                             <p>You are fully verified and now ready to onboard!</p>
                             <Link href="/onboarding" className={styles.verifyBtn}>Let's get onboarded!</Link>
                         </>
                     ):(
-                        <p>Error occured, you're not verified! Please try again.</p>
+                        <p>Error occurred, you're not verified. Please try again.</p>
                     )}
                 </CardContent>
             </Card>

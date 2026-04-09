@@ -7,7 +7,14 @@ import SignupForm from "@/components/forms/auth/SignupForm"
 import { createClient } from "@/utils/supabase/client"
 import { redirect } from "next/navigation"
 
-export default async function SignupPage() {
+interface Props {
+    searchParams: Promise<{ email?: string }>;
+}
+
+export default async function SignupPage({ searchParams }: Props) {
+    const { email } = await searchParams;
+    const invitedEmail = email?.trim().toLowerCase() ?? "";
+
     const supabase = createClient()
     const { data: { session } } = await supabase.auth.getSession()
     if (session) {
@@ -36,7 +43,7 @@ export default async function SignupPage() {
                         <h2>Create an account</h2>
                         <p>Fill in the details below to get started</p>
                     </div>
-                    <SignupForm />
+                    <SignupForm invitedEmail={invitedEmail} />
                     <p className={styles.footer}>
                         Already have an account?{" "}
                         <Link href="/login">Sign in</Link>
